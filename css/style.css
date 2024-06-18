@@ -91,3 +91,92 @@ section#about img {
     height: 100%;
     object-fit: cover;
 }
+#header {
+    background-color: #a6c288;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    width: 1400;
+  }
+  #header-esquerda {
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  #logo-header {
+    width: 25px;
+    height: 25px;
+    transform: rotate(45deg);
+    padding-right: 10px;
+  }
+  #paragrafo-header {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    align-items: center;
+  }
+  #imagem-header-direita {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+  }
+  .logo-direita-header {
+    width: 25px;
+    height: 25px;
+    justify-content: baseline;
+    padding-right: 10px;
+  }
+  #cadastro-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #cadastro-header a {
+    width: 80px;
+  }
+  
+  #navbar-opcoes {
+    background-color: #ebe68d;
+    height: 30px;
+    display: flex;
+  }
+  .navbar-item {
+    flex: 1;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .navbar-item a {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+  .navbar-item:hover {
+    background-color: #314d4a;
+  }
+  .navbar-item:hover a {
+    color: white;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  #adocao {
+    display: none;
+    flex-direction: column;
+    background-color: #a6c288;
+    width: 25%;
+    z-index: 2;
+    position: absolute;
+  }
+  #adocao a{
+    font-size: 12px;
+    padding: 5px;
+    font-family: 'Inter', sans-serif;
+  }
+  #adocao a:hover{
+    background-color: #ebe68d;;
+  }

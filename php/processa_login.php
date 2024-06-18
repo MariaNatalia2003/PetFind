@@ -17,12 +17,12 @@ if ($usuario) {
     
     if (password_verify($password, $usuario['senha'])) {
         $_SESSION['usuario'] = $email;
-        header('Location: tela_inicial.html');
+        header('Location: ../pages/tela_inicial.html');
         exit();
     } else {
-        header('Location: login.html');
+        header('Location: ../pages/login.html');
     }
 } else {
-    header('Location: cadastro.html');
+    header('Location: ../pages/cadastro.html');
 }
 ?>
