@@ -13,7 +13,7 @@ $query = mysqli_query($conexao, "INSERT INTO user(nome, email, senha) VALUES ('$
 
 if ($query) {
     // Redirecionar para a página de sucesso
-    header("Location: login.html");
+    header("Location: ../pages/login.html");
     exit();
 } else {
     echo "Erro ao cadastrar o usuário.";
