@@ -6,7 +6,7 @@
     $email = $_SESSION['usuario'];
 
     // Consulta SQL para obter a lista de pets doados
-    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo, CASE WHEN adotado then 'Sim' ELSE 'Não' END AS adotadoStr FROM pets WHERE emailUsuarioAdocao = '$email'";
+    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo, CASE WHEN adotado then 'Sim' ELSE 'Não' END AS adotadoStr FROM pets WHERE emailUsuario = '$email'";
     $result = $conexao->query($sql);
 
 ?>
@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pets Doado</title>
+    <title>Pets Adotados</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {

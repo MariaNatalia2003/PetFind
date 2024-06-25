@@ -61,7 +61,7 @@
 
     <!-- Tabela de Pets Doado -->
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Pets Adotados</h2>
+        <h2 class="text-center mb-4">Pets Doados</h2>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
