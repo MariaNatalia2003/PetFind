@@ -44,7 +44,7 @@
     <div id="petCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/pet1.jpg" class="d-block w-100" alt="Pet 1">
+                <img src="images/cachorro1.jpg" class="d-block w-100" alt="Pet 1">
             </div>
             <div class="carousel-item">
                 <img src="images/pet2.jpg" class="d-block w-100" alt="Pet 2">

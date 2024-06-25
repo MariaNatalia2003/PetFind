@@ -7,7 +7,7 @@
     $offset = ($page - 1) * $items_per_page;
 
     // Consulta SQL para obter a lista de pets com paginação
-    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo FROM pets LIMIT $items_per_page OFFSET $offset";
+    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo FROM pets WHERE NOT adotado LIMIT $items_per_page OFFSET $offset";
     $result = $conexao->query($sql);
 
     // Consulta SQL para obter o total de pets
@@ -44,7 +44,7 @@
 
     <!-- Menu de Navegação -->
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">Adoção de Pets</a>
+        <a class="navbar-brand" href="index_user.php">Adoção de Pets</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -54,10 +54,13 @@
                     <a class="nav-link" href="doar_pet.php">Doar um Pet</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="ver_pets_doado.php">Pets Doado</a>
+                    <a class="nav-link active" href="ver_pets_doado.php">Pets Doados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-logout" href="#">Logout</a>
+                    <a class="nav-link active" href="ver_pets_adotado.php">Pets Adotados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-logout" href="../php/logout.php">Logout</a>
                 </li>
             </ul>
         </div>
@@ -70,6 +73,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Nome do Pet</th>
                         <th>Idade</th>
                         <th>Cor</th>
@@ -85,6 +89,7 @@
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>";
+                            echo "<td>" . $row["id"] . "</td>";
                             echo "<td>" . $row["nome"] . "</td>";
                             echo "<td>" . $row["idade"] . "</td>";
                             echo "<td>" . $row["cor"] . "</td>";
@@ -116,8 +121,11 @@
                             echo "<p><strong>História:</strong> " . $row["historia"] . "</p>";
                             echo "</div>";
                             echo "<div class='modal-footer'>";
+                            echo "<form action='../php/processa_adocao.php' method='POST'>";
+                            echo "<input type='hidden' name='pet_id' value='" . $row["id"] . "'>";
                             echo "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fechar</button>";
-                            echo "<button type='button' class='btn btn-primary'>Adotar</button>"; // Botão de Adoção
+                            echo "<button type='submit' class='btn btn-primary'>Adotar</button>"; // Botão de Adoção
+                            echo "</form>";
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";

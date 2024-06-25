@@ -22,22 +22,26 @@
     </style>
 </head>
 <body>
+    
     <!-- Menu de Navegação -->
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">Adoção de Pets</a>
+        <a class="navbar-brand" href="index_user.php">Adoção de Pets</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="index_user.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="doar_pet.php">Doar um Pet</a>
+                    <a class="nav-link" href="doar_pet.php">Doar um Pet</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="ver_pets_doado.php">Pets Doado</a>
+                    <a class="nav-link active" href="ver_pets_doado.php">Pets Doados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-logout" href="#">Logout</a>
+                    <a class="nav-link active" href="ver_pets_adotado.php">Pets Adotados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-logout" href="../php/logout.php">Logout</a>
                 </li>
             </ul>
         </div>

@@ -6,7 +6,7 @@
     $email = $_SESSION['usuario'];
 
     // Consulta SQL para obter a lista de pets doados
-    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo, CASE WHEN adotado then 'Sim' ELSE 'Não' END AS adotadoStr FROM pets WHERE emailUsuario = '$email'";
+    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo, CASE WHEN adotado then 'Sim' ELSE 'Não' END AS adotadoStr FROM pets WHERE emailUsuarioAdocao = '$email'";
     $result = $conexao->query($sql);
 
 ?>
