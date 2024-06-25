@@ -16,8 +16,10 @@ $usuario = mysqli_fetch_assoc($query);
 if ($usuario) {
     
     if (password_verify($password, $usuario['senha'])) {
+        session_start();
+
         $_SESSION['usuario'] = $email;
-        header('Location: ../pages/tela_inicial.html');
+        header('Location: ../pages/index_user.php');
         exit();
     } else {
         header('Location: ../pages/login.html');
