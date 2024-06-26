@@ -50,7 +50,7 @@
     <!-- Formulário de Doação de Pet -->
     <div class="container">
         <h2 class="text-center mb-4">Doar um Pet</h2>
-        <form action="../php/processa_doacao.php" method="POST">
+        <form action="../php/processa_doacao.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nome">Nome do Pet</label>
                 <input type="text" class="form-control" id="nome" name="nome" required>
@@ -82,6 +82,10 @@
             <div class="form-group">
                 <label for="tipo">Tipo</label>
                 <input type="text" class="form-control" id="tipo" name="tipo" required>
+            </div>
+            <div class="form-group">
+                <label for="imagem">Imagem</label>
+                <input type="file" class="form-control-file" id="imagem" name="imagem" required>
             </div>
             <button type="submit" class="btn btn-success">Doar Pet</button>
         </form>
