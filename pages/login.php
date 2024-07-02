@@ -40,6 +40,10 @@
             <div class="mt-4 text-center">
                 <p class="text-gray-700">Não possui cadastro? <a href="cadastro.php" class="text-blue-500 hover:text-blue-700">Cadastre-se</a></p>
             </div>
+
+            <div class="mt-4 text-center">
+                <p class="text-gray-700">Deseja voltar a página principal? <a href="../index.php" class="text-blue-500 hover:text-blue-700">Clique Aqui</a></p>
+            </div>
         </div>
     </div>
 </body>

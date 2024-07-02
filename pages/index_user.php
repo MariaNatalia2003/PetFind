@@ -1,17 +1,21 @@
 <?php
     include_once('../php/conexao_mysql.php');
 
+    session_start();
+
+    $email = $_SESSION['usuario'];
+
     // Determina o número de itens por página
     $items_per_page = 25;
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $offset = ($page - 1) * $items_per_page;
 
     // Consulta SQL para obter a lista de pets com paginação
-    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo FROM pets WHERE NOT adotado LIMIT $items_per_page OFFSET $offset";
+    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo, data_doacao FROM pets WHERE NOT adotado AND NOT emailUsuario = '$email'  ORDER BY data_doacao LIMIT $items_per_page OFFSET $offset";
     $result = $conexao->query($sql);
 
     // Consulta SQL para obter o total de pets
-    $sql_total = "SELECT COUNT(*) AS total FROM pets";
+    $sql_total = "SELECT COUNT(*) AS total FROM pets WHERE NOT adotado AND NOT emailUsuario = '$email'";
     $total_result = $conexao->query($sql_total);
     $total_pets = $total_result->fetch_assoc()['total'];
     $total_pages = ceil($total_pets / $items_per_page);
@@ -27,7 +31,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #e8f5e9; /* Cor de fundo verde clara */
+            background-color: #e8f5e9; 
         }
         .navbar, .btn-logout, .footer {
             background-color: #28a745;
@@ -36,15 +40,17 @@
             color: white !important;
         }
         .table thead {
-            background-color: #81c784; /* Verde mais escuro para o cabeçalho da tabela */
+            background-color: #81c784; 
         }
     </style>
 </head>
 <body>
 
-    <!-- Menu de Navegação -->
-    <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="index_user.php">Adoção de Pets</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="index_user.php">PetFind</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -66,7 +72,6 @@
         </div>
     </nav>
 
-    <!-- Tabela de Pets -->
     <div class="container mt-5">
         <h2 class="text-center mb-4">Lista de Pets para Adoção</h2>
         <div class="table-responsive">
@@ -75,12 +80,10 @@
                     <tr>
                         <th>#</th>
                         <th>Nome do Pet</th>
-                        <th>Idade</th>
-                        <th>Cor</th>
                         <th>Raça</th>
-                        <th>Gênero</th>
                         <th>Tipo</th>
-                        <th>Descrição</th>
+                        <th>Idade</th>
+                        <th>Data Doação</th>
                         <th>Mais Detalhes</th>
                     </tr>
                 </thead>
@@ -91,12 +94,10 @@
                             echo "<tr>";
                             echo "<td>" . $row["id"] . "</td>";
                             echo "<td>" . $row["nome"] . "</td>";
-                            echo "<td>" . $row["idade"] . "</td>";
-                            echo "<td>" . $row["cor"] . "</td>";
                             echo "<td>" . $row["raca"] . "</td>";
-                            echo "<td>" . $row["genero"] . "</td>";
                             echo "<td>" . $row["tipo"] . "</td>";
-                            echo "<td>" . $row["descricao"] . "</td>";
+                            echo "<td>" . $row["idade"] . "</td>";
+                            echo "<td>" . date("d/m/Y", strtotime($row["data_doacao"])) . "</td>";
                             echo "<td><button class='btn btn-success' data-toggle='modal' data-target='#modal" . $row["id"] . "'>Mais Detalhes</button></td>";
                             echo "</tr>";
 
@@ -132,7 +133,7 @@
                             echo "</div>";
                         }
                     } else {
-                        echo "<tr><td colspan='8' class='text-center'>Nenhum pet disponível para adoção no momento.</td></tr>";
+                        echo "<tr><td colspan='6' class='text-center'>Nenhum pet disponível para adoção no momento.</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -140,7 +141,6 @@
         </div>
     </div>
 
-    <!-- Paginação -->
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <?php if ($page > 1): ?>
@@ -167,14 +167,12 @@
         </ul>
     </nav>
 
-    <!-- Footer -->
     <footer class="footer text-center py-4">
         <div class="container">
             <p class="mb-0">© 2024 PetFind. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Scripts do Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

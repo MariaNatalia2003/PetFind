@@ -9,7 +9,7 @@
         
         $email = $_SESSION['usuario'];
 
-        $sql = "UPDATE pets SET adotado = true, emailUsuario = '$email', data_adocao = NOW() WHERE id = $pet_id";
+        $sql = "UPDATE pets SET adotado = true, emailUsuarioAdocao = '$email', data_adocao = NOW() WHERE id = $pet_id";
 
         if ($conexao->query($sql) === TRUE) {
             echo "Pet adotado com sucesso!";
