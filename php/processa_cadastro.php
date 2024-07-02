@@ -23,7 +23,7 @@ function validar_senha($senha) {
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-if (strlen($senha) < 8) {
+if (strlen($password) < 8) {
     $error = "A senha deve conter no minimo 8 digitos.";
     header("Location: ../pages/cadastro.php?error=" . urlencode($error));
 }

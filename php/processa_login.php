@@ -39,7 +39,8 @@ if(validar_senha($password)){
 
             $_SESSION['usuario'] = $email;
             header('Location: ../pages/index_user.php');
-            exit();
+            
+            
         } else {
             $error = "Usuário ou senha incorretos";
             header("Location: ../pages/login.php?error=" . urlencode($error));

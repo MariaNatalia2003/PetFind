@@ -12,7 +12,10 @@
         $sql = "UPDATE pets SET adotado = true, emailUsuarioAdocao = '$email', data_adocao = NOW() WHERE id = $pet_id";
 
         if ($conexao->query($sql) === TRUE) {
-            echo "Pet adotado com sucesso!";
+            $adotado = "sim";
+            header('Location: ../pages/index_user.php?adotado=' . urlencode($adotado));
+            
+            
         } else {
             echo "Erro: " . $sql . "<br>" . $conexao->error;
         }
