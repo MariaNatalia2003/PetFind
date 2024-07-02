@@ -1,17 +1,46 @@
+<?php
+    session_start();
+
+    // Inclui o arquivo de conexão com o banco de dados
+    include_once('php/conexao_mysql.php');
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Obtém e sanitiza os dados do formulário
+        $name = htmlspecialchars($_POST['name']);
+        $email = htmlspecialchars($_POST['email']);
+        $message = htmlspecialchars($_POST['message']);
+
+        // Escapa os dados para evitar SQL injection
+        $name = $conexao->real_escape_string($name);
+        $email = $conexao->real_escape_string($email);
+        $message = $conexao->real_escape_string($message);
+
+        // Monta a consulta SQL para inserir os dados na tabela
+        $sql = "INSERT INTO contato (nome, email, mensagem) VALUES ('$name', '$email', '$message')";
+
+        // Executa a consulta e verifica se deu certo
+        if ($conexao->query($sql) === TRUE) {
+            echo "<script>alert('Obrigado por entrar em contato, $name! Entraremos em contato com você em breve.');</script>";
+        } else {
+            echo "<script>alert('Ocorreu um erro ao enviar mensagem. Tente novamente mais tarde!');</script>";
+        }
+    } 
+    $conexao->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetFind - Adote um Amigo</title>
-    <!-- Bootstrap CSS -->
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">PetFind</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,17 +63,16 @@
                     <a class="nav-link" href="#contact">Contato</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/login.html">Login</a>
+                    <a class="nav-link" href="pages/login.php">Login</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Header -->
     <div id="petCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/pet1.jpg" class="d-block w-100" alt="Pet 1">
+                <img src="images/cachorro1.jpg" class="d-block w-100" alt="Pet 1">
             </div>
             <div class="carousel-item">
                 <img src="images/pet2.jpg" class="d-block w-100" alt="Pet 2">
@@ -63,7 +91,6 @@
         </a>
     </div>
 
-    <!-- About Section -->
     <section id="about" class="py-5">
         <div class="container">
             <div class="row">
@@ -71,57 +98,11 @@
                     <h2 class="section-title">Sobre o PetFind</h2>
                     <p>PetFind é uma campanha dedicada a encontrar lares amorosos para pets abandonados. Trabalhamos com abrigos locais para facilitar a adoção e garantir que cada pet encontre um lar seguro e carinhoso.</p>
                 </div>
-                <div class="col-md-6">
-                    <!-- <img src="images/about.jpg" class="img-fluid" alt="About PetFind"> -->
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Pets Section -->
-    <section id="pets" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center section-title">Pets Disponíveis para Adoção</h2>
-            <div class="row">
-                <!-- Pet 1 -->
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="images/dog1.jpg" class="card-img-top" alt="Pet 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Buddy</h5>
-                            <p class="card-text">Um cachorro amigável e brincalhão que adora correr no parque.</p>
-                            <a href="#contact" class="btn btn-primary">Adote-me</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pet 2 -->
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="images/gato1.jpg" class="card-img-top" alt="Pet 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Mittens</h5>
-                            <p class="card-text">Uma gatinha carinhosa que adora um colo quentinho.</p>
-                            <a href="#contact" class="btn btn-primary">Adote-me</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pet 3 -->
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="images/coelho1.jpg" class="card-img-top" alt="Pet 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Charlie</h5>
-                            <p class="card-text">Um coelho fofinho e curioso que ama cenouras.</p>
-                            <a href="#contact" class="btn btn-primary">Adote-me</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-5">
+    <section id="gallery" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center section-title">Galeria de Fotos e Vídeos</h2>
             <div class="row">
@@ -141,8 +122,7 @@
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="py-5">
+    <!-- <section id="team" class="py-5">
         <div class="container">
             <h2 class="text-center section-title">Conheça Nossa Equipe</h2>
             <div class="row">
@@ -168,10 +148,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- Where to Find Section -->
-    <section id="volunteer" class="py-5 bg-light">
+    <section id="volunteer" class="py-5">
         <div class="container">
             <h2 class="text-center section-title">Onde Encontrar</h2>
             <div class="row">
@@ -184,13 +163,12 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
+    <section id="contact" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center section-title">Entre em Contato</h2>
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <form action="contact.php" method="post">
+                    <form action="index.php" method="post">
                         <div class="form-group">
                             <label for="name">Nome</label>
                             <input type="text" class="form-control" id="name" name="name" required>
@@ -210,14 +188,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer text-center py-4">
         <div class="container">
             <p class="mb-0">© 2024 PetFind. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

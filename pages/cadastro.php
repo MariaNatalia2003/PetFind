@@ -29,12 +29,24 @@
                     </label>
                     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" name="password" type="password" placeholder="Digite sua senha">
                 </div>
+                <?php
+               if (isset($_GET['error'])) {
+                echo '<p style="color:red;">' . htmlspecialchars($_GET['error']) . '</p>';
+                }
+            ?>
                 <div class="flex items-center justify-between">
                     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                         Cadastrar
                     </button>
                 </div>
             </form>
+            <div class="mt-4 text-center">
+                <p class="text-gray-700">Possui cadastro? <a href="login.php" class="text-blue-500 hover:text-blue-700">Faça o Login</a></p>
+            </div>
+
+            <div class="mt-4 text-center">
+                <p class="text-gray-700">Deseja voltar a página principal? <a href="../index.php" class="text-blue-500 hover:text-blue-700">Clique Aqui</a></p>
+            </div>
         </div>
     </div>
 </body>

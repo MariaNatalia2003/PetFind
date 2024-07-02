@@ -3,7 +3,6 @@
 
     include_once('conexao_mysql.php');
 
-    // Verifica se os dados foram enviados via POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nome = $_POST['nome'];
         $idade = $_POST['idade'];

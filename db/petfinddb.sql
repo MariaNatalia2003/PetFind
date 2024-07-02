@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2024 at 04:58 AM
+-- Generation Time: Jul 02, 2024 at 02:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,58 +24,76 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contato`
+--
+
+CREATE TABLE `contato` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `mensagem` text NOT NULL,
+  `data_envio` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pets`
 --
 
 CREATE TABLE `pets` (
   `id` int(11) NOT NULL,
-  `nome` varchar(255) NOT NULL,
-  `idade` varchar(255) NOT NULL,
-  `cor` varchar(255) NOT NULL,
-  `raca` varchar(255) NOT NULL,
-  `genero` varchar(255) NOT NULL,
-  `descricao` text NOT NULL,
   `historia` text NOT NULL,
   `adotado` tinyint(1) DEFAULT NULL,
   `tipo` varchar(255) NOT NULL,
-  `emailUsuario` varchar(255) DEFAULT NULL
+  `emailUsuario` varchar(255) DEFAULT NULL,
+  `emailUsuarioAdocao` varchar(255) DEFAULT NULL,
+  `data_doacao` datetime DEFAULT current_timestamp(),
+  `data_adocao` datetime DEFAULT NULL,
+  `nome` varchar(200) DEFAULT NULL,
+  `idade` varchar(50) DEFAULT NULL,
+  `cor` varchar(50) DEFAULT NULL,
+  `descricao` varchar(150) DEFAULT NULL,
+  `raca` varchar(100) DEFAULT NULL,
+  `genero` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pets`
 --
 
-INSERT INTO `pets` (`id`, `nome`, `idade`, `cor`, `raca`, `genero`, `descricao`, `historia`, `adotado`, `tipo`, `emailUsuario`) VALUES
-(11, 'Rex', '2 anos', 'Marrom', 'Labrador', 'Macho', 'Amigável e cheio de energia', 'Rex foi resgatado de um abrigo onde estava desde filhote. Agora ele está procurando uma família amorosa que possa lhe dar atenção e carinho.', 0, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(12, 'Luna', '1 ano', 'Branco', 'Poodle', 'Fêmea', 'Calma e carinhosa', 'Luna foi abandonada na rua e resgatada por um grupo de protetores. Agora ela está pronta para encontrar uma nova família que possa lhe dar todo o amor que ela merece.', 0, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(13, 'Thor', '3 anos', 'Preto', 'Pastor Alemão', 'Macho', 'Protetor e leal', 'Thor foi deixado em um abrigo por sua antiga família que não podia mais cuidar dele. Ele está esperando por uma nova oportunidade de ter um lar cheio de amor.', 0, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(14, 'Bella', '4 anos', 'Dourado', 'Golden Retriever', 'Fêmea', 'Muito brincalhona e amigável', 'Bella foi encontrada vagando pelas ruas e levada a um abrigo. Ela é muito dócil e adora crianças.', 0, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(15, 'Max', '5 anos', 'Cinza', 'Husky Siberiano', 'Macho', 'Muito ativo e cheio de energia', 'Max foi entregue ao abrigo por uma família que não podia mais cuidar dele devido à mudança de país.', 0, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(16, 'Milo', '6 meses', 'Laranja', 'Gato Persa', 'Macho', 'Curioso e brincalhão', 'Milo foi resgatado de uma situação de maus tratos. Ele adora explorar e brincar com brinquedos.', 0, 'Gato', 'gustavo.gp520@gmail.com'),
-(17, 'Chloe', '2 anos', 'Preto e Branco', 'Border Collie', 'Fêmea', 'Inteligente e treinável', 'Chloe foi entregue ao abrigo por uma família que não podia mais cuidar dela. Ela é muito inteligente e fácil de treinar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(18, 'Simba', '1 ano', 'Tigrado', 'Gato SRD', 'Macho', 'Independente e curioso', 'Simba foi encontrado abandonado em um parque. Ele é muito independente e adora explorar novos lugares.', 0, 'Gato', 'gustavo.gp520@gmail.com'),
-(19, 'Buddy', '3 anos', 'Branco e Marrom', 'Beagle', 'Macho', 'Amigável e cheio de energia', 'Buddy foi resgatado de um abrigo lotado. Ele adora correr e brincar ao ar livre.', 0, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(20, 'Lucy', '4 anos', 'Preto', 'Labrador', 'Fêmea', 'Muito amorosa e leal', 'Lucy foi abandonada por sua antiga família. Ela é muito leal e está sempre procurando agradar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(21, 'Charlie', '3 anos', 'Preto', 'Pastor Alemão', 'Macho', 'Protetor e leal', 'Charlie foi resgatado de um abrigo superlotado e agora busca um lar amoroso.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(22, 'Luna', '2 anos', 'Branco', 'Maltês', 'Fêmea', 'Carinhosa e calma', 'Luna foi abandonada e resgatada por voluntários. Ela adora ser mimada.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(23, 'Max', '1 ano', 'Marrom', 'Labrador', 'Macho', 'Cheio de energia e brincalhão', 'Max foi encontrado vagando pelas ruas e está pronto para um novo lar.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(24, 'Mimi', '4 anos', 'Cinza', 'Gato Persa', 'Fêmea', 'Independente e curiosa', 'Mimi foi entregue ao abrigo por uma família que se mudou. Ela é muito tranquila.', NULL, 'Gato', 'gustavo.gp520@gmail.com'),
-(25, 'Tom', '2 anos', 'Tigrado', 'Gato SRD', 'Macho', 'Muito brincalhão e curioso', 'Tom foi resgatado de um local perigoso e agora espera por uma família amorosa.', NULL, 'Gato', 'gustavo.gp520@gmail.com'),
-(26, 'Nina', '5 anos', 'Preto', 'Labrador', 'Fêmea', 'Muito carinhosa e leal', 'Nina foi abandonada após a morte de seu dono e agora busca um novo lar.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(27, 'Bella', '6 anos', 'Branco', 'Poodle', 'Fêmea', 'Muito dócil e amigável', 'Bella foi resgatada de uma situação de maus-tratos e agora espera por uma nova chance.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(28, 'Tiger', '3 anos', 'Tigrado', 'Gato SRD', 'Macho', 'Independente e curioso', 'Tiger foi encontrado abandonado em um parque e está em busca de um lar amoroso.', NULL, 'Gato', 'gustavo.gp520@gmail.com'),
-(29, 'Buddy', '1 ano', 'Dourado', 'Golden Retriever', 'Macho', 'Muito amigável e cheio de energia', 'Buddy foi resgatado de um abrigo superlotado e está pronto para ser adotado.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(30, 'Oscar', '4 anos', 'Preto e Branco', 'Border Collie', 'Macho', 'Muito inteligente e leal', 'Oscar foi abandonado por sua antiga família e agora espera por um novo lar.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(31, 'Lily', '2 anos', 'Branco', 'Poodle', 'Fêmea', 'Carinhosa e calma', 'Lily foi resgatada de um abrigo superlotado e está em busca de uma nova família.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(32, 'Coco', '3 anos', 'Marrom', 'Chihuahua', 'Fêmea', 'Muito dócil e amigável', 'Coco foi abandonada por seus antigos donos e agora espera por um novo lar.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(33, 'Simba', '5 anos', 'Tigrado', 'Gato SRD', 'Macho', 'Independente e brincalhão', 'Simba foi resgatado de um local perigoso e agora busca uma família amorosa.', NULL, 'Gato', 'gustavo.gp520@gmail.com'),
-(34, 'Rocky', '1 ano', 'Preto', 'Rottweiler', 'Macho', 'Muito leal e protetor', 'Rocky foi abandonado por seus antigos donos e agora espera por um novo lar.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(35, 'Daisy', '2 anos', 'Branco', 'Shih Tzu', 'Fêmea', 'Muito carinhosa e dócil', 'Daisy foi resgatada de uma situação de maus-tratos e está em busca de uma nova família.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(36, 'Milo', '4 anos', 'Laranja', 'Gato Persa', 'Macho', 'Curioso e brincalhão', 'Milo foi entregue ao abrigo por uma família que se mudou. Ele é muito tranquilo.', NULL, 'Gato', 'gustavo.gp520@gmail.com'),
-(37, 'Ruby', '3 anos', 'Marrom', 'Beagle', 'Fêmea', 'Muito amigável e cheia de energia', 'Ruby foi resgatada de um abrigo superlotado e está pronta para ser adotada.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(38, 'Toby', '2 anos', 'Preto e Branco', 'Border Collie', 'Macho', 'Muito inteligente e fácil de treinar', 'Toby foi abandonado por sua antiga família e agora espera por um novo lar.', NULL, 'Cachorro', 'gustavo.gp520@gmail.com'),
-(39, 'Oliver', '1 ano', 'Tigrado', 'Gato SRD', 'Macho', 'Muito brincalhão e curioso', 'Oliver foi resgatado de um local perigoso e está em busca de um lar amoroso.', NULL, 'Gato', 'gustavo.gp520@gmail.com'),
-(40, 'Chloe', '5 anos', 'Cinza', 'Gato Persa', 'Fêmea', 'Independente e calma', 'Chloe foi abandonada por sua antiga família e agora busca uma nova chance de ser feliz.', NULL, 'Gato', 'gustavo.gp520@gmail.com');
+INSERT INTO `pets` (`id`, `historia`, `adotado`, `tipo`, `emailUsuario`, `emailUsuarioAdocao`, `data_doacao`, `data_adocao`, `nome`, `idade`, `cor`, `descricao`, `raca`, `genero`) VALUES
+(11, 'Rex foi resgatado de um abrigo onde estava desde filhote. Agora ele está procurando uma família amorosa que possa lhe dar atenção e carinho.', 1, 'Cachorro', 'marianatalia@gmail.com', 'gustavo.gp520@gmail.com', '2024-07-01 19:35:18', '2024-07-01 19:37:43', 'Rex', '2 anos', 'Marrom', 'Amigável e cheio de energia', 'Labrador', 'Macho'),
+(12, 'Luna foi abandonada na rua e resgatada por um grupo de protetores. Agora ela está pronta para encontrar uma nova família que possa lhe dar todo o amor que ela merece.', 0, 'Cachorro', 'marianatalia@gmail.com', NULL, '2024-06-01 19:35:18', NULL, 'Luna', '1 ano', 'Branco', 'Calma e carinhosa', 'Poodle', 'Fêmea'),
+(13, 'Thor foi deixado em um abrigo por sua antiga família que não podia mais cuidar dele. Ele está esperando por uma nova oportunidade de ter um lar cheio de amor.', 0, 'Cachorro', 'marianatalia@gmail.com', NULL, '2024-05-21 19:35:18', NULL, 'Thor', '3 anos', 'Preto', 'Protetor e leal', 'Pastor Alemão', 'Macho'),
+(14, 'Bella foi encontrada vagando pelas ruas e levada a um abrigo. Ela é muito dócil e adora crianças.', 0, 'Cachorro', 'marianatalia@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Bella', '4 anos', 'Dourado', 'Muito brincalhona e amigável', 'Golden Retriever', 'Fêmea'),
+(15, 'Max foi entregue ao abrigo por uma família que não podia mais cuidar dele devido à mudança de país.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Max', '5 anos', 'Cinza', 'Muito ativo e cheio de energia', 'Husky Siberiano', 'Macho'),
+(16, 'Milo foi resgatado de uma situação de maus tratos. Ele adora explorar e brincar com brinquedos.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Milo', '6 meses', 'Laranja', 'Curioso e brincalhão', 'Gato Persa', 'Macho'),
+(17, 'Chloe foi entregue ao abrigo por uma família que não podia mais cuidar dela. Ela é muito inteligente e fácil de treinar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Chloe', '2 anos', 'Preto e Branco', 'Inteligente e treinável', 'Border Collie', 'Fêmea'),
+(18, 'Simba foi encontrado abandonado em um parque. Ele é muito independente e adora explorar novos lugares.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Simba', '1 ano', 'Tigrado', 'Independente e curioso', 'Gato SRD', 'Macho'),
+(19, 'Buddy foi resgatado de um abrigo lotado. Ele adora correr e brincar ao ar livre.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Buddy', '3 anos', 'Branco e Marrom', 'Amigável e cheio de energia', 'Beagle', 'Macho'),
+(20, 'Lucy foi abandonada por sua antiga família. Ela é muito leal e está sempre procurando agradar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Lucy', '4 anos', 'Preto', 'Muito amorosa e leal', 'Labrador', 'Fêmea'),
+(21, 'Charlie foi resgatado de um abrigo superlotado e agora busca um lar amoroso.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Charlie', '3 anos', 'Preto', 'Protetor e leal', 'Pastor Alemão', 'Macho'),
+(22, 'Luna foi abandonada e resgatada por voluntários. Ela adora ser mimada.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Luna', '2 anos', 'Branco', 'Carinhosa e calma', 'Maltês', 'Fêmea'),
+(23, 'Max foi encontrado vagando pelas ruas e está pronto para um novo lar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Max', '1 ano', 'Marrom', 'Cheio de energia e brincalhão', 'Labrador', 'Macho'),
+(24, 'Mimi foi entregue ao abrigo por uma família que se mudou. Ela é muito tranquila.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Mimi', '4 anos', 'Cinza', 'Independente e curiosa', 'Gato Persa', 'Fêmea'),
+(25, 'Tom foi resgatado de um local perigoso e agora espera por uma família amorosa.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Tom', '2 anos', 'Tigrado', 'Muito brincalhão e curioso', 'Gato SRD', 'Macho'),
+(26, 'Nina foi abandonada após a morte de seu dono e agora busca um novo lar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Nina', '5 anos', 'Preto', 'Muito carinhosa e leal', 'Labrador', 'Fêmea'),
+(27, 'Bella foi resgatada de uma situação de maus-tratos e agora espera por uma nova chance.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Bella', '6 anos', 'Branco', 'Muito dócil e amigável', 'Poodle', 'Fêmea'),
+(28, 'Tiger foi encontrado abandonado em um parque e está em busca de um lar amoroso.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Tiger', '3 anos', 'Tigrado', 'Independente e curioso', 'Gato SRD', 'Macho'),
+(29, 'Buddy foi resgatado de um abrigo superlotado e está pronto para ser adotado.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Buddy', '1 ano', 'Dourado', 'Muito amigável e cheio de energia', 'Golden Retriever', 'Macho'),
+(30, 'Oscar foi abandonado por sua antiga família e agora espera por um novo lar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Oscar', '4 anos', 'Preto e Branco', 'Muito inteligente e leal', 'Border Collie', 'Macho'),
+(31, 'Lily foi resgatada de um abrigo superlotado e está em busca de uma nova família.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Lily', '2 anos', 'Branco', 'Carinhosa e calma', 'Poodle', 'Fêmea'),
+(32, 'Coco foi abandonada por seus antigos donos e agora espera por um novo lar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Coco', '3 anos', 'Marrom', 'Muito dócil e amigável', 'Chihuahua', 'Fêmea'),
+(33, 'Simba foi resgatado de um local perigoso e agora busca uma família amorosa.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Simba', '5 anos', 'Tigrado', 'Independente e brincalhão', 'Gato SRD', 'Macho'),
+(34, 'Rocky foi abandonado por seus antigos donos e agora espera por um novo lar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Rocky', '1 ano', 'Preto', 'Muito leal e protetor', 'Rottweiler', 'Macho'),
+(35, 'Daisy foi resgatada de uma situação de maus-tratos e está em busca de uma nova família.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Daisy', '2 anos', 'Branco', 'Muito carinhosa e dócil', 'Shih Tzu', 'Fêmea'),
+(36, 'Milo foi entregue ao abrigo por uma família que se mudou. Ele é muito tranquilo.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Milo', '4 anos', 'Laranja', 'Curioso e brincalhão', 'Gato Persa', 'Macho'),
+(37, 'Ruby foi resgatada de um abrigo superlotado e está pronta para ser adotada.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Ruby', '3 anos', 'Marrom', 'Muito amigável e cheia de energia', 'Beagle', 'Fêmea'),
+(38, 'Toby foi abandonado por sua antiga família e agora espera por um novo lar.', 0, 'Cachorro', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Toby', '2 anos', 'Preto e Branco', 'Muito inteligente e fácil de treinar', 'Border Collie', 'Macho'),
+(39, 'Oliver foi resgatado de um local perigoso e está em busca de um lar amoroso.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Oliver', '1 ano', 'Tigrado', 'Muito brincalhão e curioso', 'Gato SRD', 'Macho'),
+(40, 'Chloe foi abandonada por sua antiga família e agora busca uma nova chance de ser feliz.', 0, 'Gato', 'gustavo.gp520@gmail.com', NULL, '2024-07-01 19:35:18', NULL, 'Chloe', '5 anos', 'Cinza', 'Independente e calma', 'Gato Persa', 'Fêmea'),
+(42, 'fgggd', 0, 'fffff', 'gustavo.gp520@gmail.com', NULL, '2024-07-31 20:35:35', NULL, 'guga', 'x teste', 'cort', 'ssdf', 'racat', 'gent');
 
 -- --------------------------------------------------------
 
@@ -103,6 +121,12 @@ INSERT INTO `user` (`ID`, `nome`, `email`, `senha`) VALUES
 --
 
 --
+-- Indexes for table `contato`
+--
+ALTER TABLE `contato`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pets`
 --
 ALTER TABLE `pets`
@@ -117,6 +141,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `contato`
+--
+ALTER TABLE `contato`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pets`

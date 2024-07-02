@@ -5,8 +5,8 @@
 
     $email = $_SESSION['usuario'];
 
-    // pets doados
-    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo, data_doacao, CASE WHEN adotado then 'Sim' ELSE 'Não' END AS adotadoStr FROM pets WHERE emailUsuario = '$email' ORDER BY data_doacao DESC";
+    // pets adotados
+    $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo, data_adocao FROM pets WHERE emailUsuarioAdocao = '$email' ORDER BY data_adocao DESC";
     $result = $conexao->query($sql);
 
 ?>
@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pets Doados</title>
+    <title>Pets Adotados</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -66,7 +66,7 @@
     </nav>
 
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Pets Doados</h2>
+        <h2 class="text-center mb-4">Pets Adotados</h2>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -76,8 +76,7 @@
                         <th>Raça</th>
                         <th>Tipo</th>
                         <th>Idade</th>
-                        <th>Data Doado</th>
-                        <th>Adotado</th>
+                        <th>Data Adoção</th>
                         <th>Mais Detalhes</th>
                     </tr>
                 </thead>
@@ -91,8 +90,7 @@
                             echo "<td>" . $row["raca"] . "</td>";
                             echo "<td>" . $row["tipo"] . "</td>";
                             echo "<td>" . $row["idade"] . "</td>";
-                            echo "<td>" . date("d/m/Y", strtotime($row["data_doacao"])) . "</td>";
-                            echo "<td>" . $row["adotadoStr"] . "</td>";
+                            echo "<td>" . date("d/m/Y", strtotime($row["data_adocao"])) . "</td>";
                             echo "<td><button class='btn btn-success' data-toggle='modal' data-target='#modal" . $row["id"] . "'>Mais Detalhes</button></td>";
                             echo "</tr>";
 
@@ -126,10 +124,9 @@
                             echo "</div>";
                             echo "</div>";
                             echo "</tr>";
-                            echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='6' class='text-center'>Nenhum pet foi doado ainda.</td></tr>";
+                        echo "<tr><td colspan='6' class='text-center'>Nenhum pet foi adotado ainda.</td></tr>";
                     }
                     ?>
                 </tbody>
