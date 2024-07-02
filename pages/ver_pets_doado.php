@@ -76,7 +76,7 @@
                         <th>Raça</th>
                         <th>Tipo</th>
                         <th>Idade</th>
-                        <th>Data Doado</th>
+                        <th>Data Doação</th>
                         <th>Adotado</th>
                         <th>Mais Detalhes</th>
                     </tr>
@@ -129,7 +129,7 @@
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='6' class='text-center'>Nenhum pet foi doado ainda.</td></tr>";
+                        echo "<tr><td colspan='8' class='text-center'>Nenhum pet foi doado ainda.</td></tr>";
                     }
                     ?>
                 </tbody>

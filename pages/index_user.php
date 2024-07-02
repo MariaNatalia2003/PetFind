@@ -9,11 +9,11 @@
         $offset = ($page - 1) * $items_per_page;
 
         // Consulta SQL para obter a lista de pets com paginação
-        $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo FROM pets WHERE NOT adotado LIMIT $items_per_page OFFSET $offset";
+        $sql = "SELECT id, nome, idade, cor, raca, genero, descricao, historia, tipo FROM pets WHERE NOT adotado AND NOT emailUsuario = '$email_cookie' LIMIT $items_per_page OFFSET $offset";
         $result = $conexao->query($sql);
 
         // Consulta SQL para obter o total de pets
-        $sql_total = "SELECT COUNT(*) AS total FROM pets";
+        $sql_total = "SELECT COUNT(*) AS total FROM pets WHERE NOT adotado AND NOT emailUsuario = '$email_cookie'";
         $total_result = $conexao->query($sql_total);
         $total_pets = $total_result->fetch_assoc()['total'];
         $total_pages = ceil($total_pets / $items_per_page);

@@ -126,7 +126,7 @@
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='6' class='text-center'>Nenhum pet foi adotado ainda.</td></tr>";
+                        echo "<tr><td colspan='7' class='text-center'>Nenhum pet foi adotado ainda.</td></tr>";
                     }
                     ?>
                 </tbody>

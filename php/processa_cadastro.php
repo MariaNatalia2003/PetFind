@@ -41,11 +41,11 @@ else{
             $query = mysqli_query($conexao, "INSERT INTO user(nome, email, senha) VALUES ('$nome', '$email', '$hashed_password')");
     
             // Redirecionar para a página de sucesso
-            header("Location: ../pages/index_user.php");
+            header("Location: ../pages/login.php");
             exit();
         } else {
-            echo "Erro ao cadastrar o usuário.";
-            echo "Email já cadastrado.";
+            $error = "Erro ao cadastrar o usuário. Email já cadastrado.";
+            header("Location: ../pages/cadastro.php?error=" . urlencode($error)); 
         }
     }
     else{
